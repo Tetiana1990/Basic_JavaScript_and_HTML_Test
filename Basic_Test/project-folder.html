@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Name/Value Pair</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="phone.css">
+
+</head>
+<body>
+<div class="container">
+    <div class="header">
+    <p>Name/Value Pair</p>
+    <input id="pairInput" type="text" placeholder="Enter Name=Value">
+    <p>Name/Value Pair List</p>
+        <textarea id="outputArea" placeholder="Added values"></textarea>
+    </div>
+    <div class="buttons">
+    <button onclick="addPair()">Add</button>
+    <button onclick="sortByName()">Sort by Name</button>
+    <button onclick="sortByValue()">Sort by Value</button>
+    <button onclick="deleteSelectedPair()">Delete</button>
+    <ul id="pairList"></ul>
+    </div>
+
+</div>
+<script>
+    const pairList = [];
+
+    function addPair() {
+        const input = document.getElementById('pairInput').value.trim();
+        if (!input.includes('=')) {
+            alert('Invalid format! Enter in the format "Name=Value".');
+            return;
+        }
+        const [name,value] = input.split('=');
+        if (!name || !value) {
+            alert('Name and Value cannot be empty.');
+            return;
+        }
+    pairList.push({name: name.trim(),value: value.trim()});
+        document.getElementById('pairInput').value = '';
+        updateOutputArea()
+    }
+
+    function updateOutputArea() {
+        const pairListElement = document.getElementById('pairList');
+        pairListElement.innerHTML = '';
+        const outputArea = document.getElementById('outputArea');
+            outputArea.value = pairList.map(pair => `${pair.name}=${pair.value}`).join('\n')
+
+        pairList.forEach((pair,index) => {
+            const listItem = document.getElementById('li');
+            listItem.textContent =`${pair,name} = ${pair,value}`;
+            listItem.style.cursor = 'pointer';
+
+            listItem.onclick = () => deleteSelectedPair(index);
+
+            pairListElement.appendChild(listItem)
+        })
+    }
+    function sortByName() {
+        pairList.sort((a,b) => a.name.localeCompare(b.name));
+      updateOutputArea()
+    }
+    function sortByValue() {
+        pairList.sort((a,b) => a.value.localeCompare(b.value));
+        updateOutputArea()
+    }
+    function deleteSelectedPair(index) {
+        pairList.splice(index, 1);
+        updateOutputArea()
+}
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

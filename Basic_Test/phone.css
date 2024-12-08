@@ -1,0 +1,49 @@
+@media screen and (max-width: 480px) {
+    .header p{
+        font-size: 14px;
+    }
+
+    .header input,textarea{
+      height: 50px;
+        width: 90%;
+
+    }
+    .container{
+        display: flex;
+        width: 100vw;
+        flex-direction: column ;
+        height: 100vh;
+    }
+
+    .buttons {
+        font-size: 14px;
+       margin: 0;
+        width: 100%;
+    }
+
+    #pairList li{
+        font-size: 14px;
+        padding: 8px;
+    }
+    button:nth-child(1){
+        width: 87%;
+        height: 50px;
+        margin-left: 20px;
+    }
+    button:nth-child(2){
+        width: 87%;
+        height: 50px;
+        margin-left: 20px;
+    }
+    button:nth-child(3){
+        width: 87%;
+        height: 50px;
+        margin-left: 20px;
+    }
+    button:nth-child(4){
+        width: 87%;
+        height: 50px;
+        margin-left: 20px;
+    }
+
+}
